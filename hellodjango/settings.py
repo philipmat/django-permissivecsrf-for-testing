@@ -1,5 +1,8 @@
 # Django settings for hellodjango project.
+import os
+import dj_database_url
 
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -103,11 +106,13 @@ ROOT_URLCONF = 'hellodjango.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'hellodjango.wsgi.application'
 
+
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+
+    os.path.join(SITE_ROOT, 'templates'),
+    #REGISTRATION_TEMPLATE_DIR,
+    
+    )
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -117,7 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -151,13 +156,11 @@ LOGGING = {
     }
 }
 
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
 
 # Being on Heroku it's as if we were behind a proxy,
 # so Django doesn't know we're in https mode
 # This header is supposed to fix it, per:
 # https://docs.djangoproject.com/en/1.4/ref/settings/#secure-proxy-ssl-header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True

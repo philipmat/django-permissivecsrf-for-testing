@@ -1,0 +1,17 @@
+<html>
+	<body>
+		<form method="post" action="{% url django.contrib.auth.views.login %}">
+			{% csrf_token %}
+			<input name="next" type="hidden" value="/hello" />
+			<p>
+				<span>Username</span>
+				<input name="username" type="text" />
+			</p>
+			<p>
+				<span>Password</span>
+				<input name="password" type="password" />
+			</p>
+			<p><input type="submit" /></p>
+		</form>
+	</body>
+</html>
