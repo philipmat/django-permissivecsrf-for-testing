@@ -3,7 +3,7 @@
 		{% if 'localhost' in request.get_host %}
 		<form method="post" action="{% url django.contrib.auth.views.login %}">
 		{% else %}
-		<form method="post" action="https://{{ request.get_host }}/accounts/login">
+		<form method="post" action="https://{{ request.get_host }}/accounts/login/">
 		{% endif %}
 			{% csrf_token %}
 			<input name="next" type="hidden" value="/hello" />
