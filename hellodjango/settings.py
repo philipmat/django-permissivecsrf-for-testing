@@ -1,6 +1,7 @@
 # Django settings for hellodjango project.
 import os
 import dj_database_url
+import django.conf.global_settings as DEFAULT_SETTINGS
 
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 DEBUG = True
@@ -113,6 +114,9 @@ TEMPLATE_DIRS = (
     #REGISTRATION_TEMPLATE_DIR,
     
     )
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
